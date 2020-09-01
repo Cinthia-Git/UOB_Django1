@@ -44,8 +44,6 @@ class DatosGenerales(Model):
 
 
 
-
-
 class Parametros(Model):
     id_datos_generales=ForeignKey(DatosGenerales,on_delete=CASCADE)
     categoria=CharField(max_length=50)

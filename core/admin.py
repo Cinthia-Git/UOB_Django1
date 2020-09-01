@@ -1,6 +1,6 @@
 from django.contrib import admin
-from core.models import *
 from django.contrib.gis.admin import LeafletGeoAdmin
+from core.models import *
 from .models import DatosGenerales
 from .models import Parametros
 from .models import Lugar
