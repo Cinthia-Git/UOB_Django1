@@ -7,8 +7,8 @@ from .models import DatosGenerales
 class Inicio(TemplateView):
     template_name = "core/index.html"
 
-class DatosGeneralesList(ListView) :
-    queryset = DatosGenerales.objects.filter(point_isnull-False )
+#class DatosGeneralesList(ListView) :
+    #queryset = DatosGenerales.objects.filter(point_isnull-False )
 
 
 # Create your views here.

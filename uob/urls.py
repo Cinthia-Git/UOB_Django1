@@ -21,7 +21,7 @@ from django.urls import path
 
 urlpatterns = [
     path('',include('core.urls')), 
-    path('admin/', admin.site.urls),
-    path('map/', DatosGeneralesList.as_view()),
-    
+    path('admin/', admin.site.urls),  
 ]
+
+#path('map/', DatosGeneralesList.as_view()),

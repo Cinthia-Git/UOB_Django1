@@ -6,21 +6,26 @@ from .models import Parametros
 from .models import Lugar
 
 # Register your models here.
-admin.site.register(DatosGenerales)
-admin.site.register(Parametros)
-admin.site.register(Lugar, LeafletGeoAdmin)
+#admin.site.register(DatosGenerales)
+#admin.site.register(Parametros)
+#admin.site.register(Lugar, LeafletGeoAdmin)
 
-@admin.register (DatosGenerales)
+
 class DatosGeneralesAdmin(LeafletGeoAdmin):
     list_display = ('DatosGenerales', 'location')
+
 admin.site.register(DatosGenerales, DatosGeneralesAdmin)
 
-@admin.register (Parametros)
+
 class ParametrosAdmin(LeafletGeoAdmin):
     list_display = ('Parametros', 'location')
+
 admin.site.register(Parametros, ParametrosAdmin)
 
-@admin.register (Lugar)
+
+
 class LugarAdmin(LeafletGeoAdmin):
     list_display = ('Lugar', 'location')
+    list_filter = ('Lugar', 'location')
+
 admin.site.register(Lugar, LugarAdmin)
