@@ -60,3 +60,13 @@ class Lugar(Model):
     @property
     def lat_lng(self):
         return list(getattr(self.point, 'coords', []) [::-1])
+
+
+
+#class Límites_RMCH(Model):
+    id_parametro= 
+    CLASE_A=FloatField
+    CLASE_B=
+    CLASE_C=
+    CLASE_D=
+    CLASE_E= 
