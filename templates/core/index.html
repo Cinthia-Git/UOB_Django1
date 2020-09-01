@@ -1,0 +1,128 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootswatch: Darkly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin="" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+      <font style="vertical-align: heredar;">
+        <font style="vertical-align: heredar;"> Barra de navegación </font>
+        </ fuente>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="# navbarColor01"
+      aria-controls="navbarColor01" aria-extended="false" aria-label="Navegación de palanca ">
+      <span class="navbar-toggler-icon"> </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="elemento de navegación activo">
+          <a class="nav-link" href="#">
+            <font style="vertical-align: heredar;">
+              <font style="vertical-align: heredar;"> Hogar </font>
+            </font> <span class="sr-only">
+              <font style="vertical-align: heredar;">
+                <font style="vertical-align: heredar;"> (Actual) </font>
+              </font>
+              </ span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <font style="vertical-align: heredar;">
+              <font style="vertical-align: heredar;"> Caracteristicas </font>
+            </font>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <font style="vertical-align: heredar;">
+              <font style="vertical-align: heredar;"> Precios </font>
+            </font>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <font style="vertical-align: heredar;">
+              <font style="vertical-align: heredar;"> Acerca de </font>
+              </ font>
+          </a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+        <button class="btn btn-secundario my-2 my-sm-0" type="submit">
+          <font style="vertical-align: heredar;">
+            <font style="vertical-align: heredar;"> Buscar </font>
+          </font>
+        </button>
+      </form>
+    </div>
+  </nav>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+</body>
+
+<html><head>
+  <link rel="stylesheet"
+         href="//unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+{% load leaflet_tags %}
+<html>
+  <head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <style>
+      .leaflet-container { height: 100%; }
+    </style>
+    <script>
+      var dataurl = '{% url "data" %}';
+
+      window.addEventListener("map:init", function (event) {
+        var map = event.detail.map;
+        // Download GeoJSON data with Ajax
+        fetch(dataurl)
+          .then(function(resp) {
+            return resp.json();
+          })
+          .then(function(data) {
+            L.geoJson(data, {
+              onEachFeature: function onEachFeature(feature, layer) {
+                var props = feature.properties;
+                var content = `<img width="300" src="${props.picture_url}"/><h3>${props.title}</h3><p>${props.description}</p>`;
+                layer.bindPopup(content);
+            }}).addTo(map);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>VISUALIZADOR - CALIDAD DE AGUA JURISDICCIÓN BOLIVIANA</h3>
+    {% leaflet_map "" %}
+  </body>
+</html>
+
