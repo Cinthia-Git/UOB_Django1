@@ -1,9 +1,10 @@
 from django.contrib import admin
 from core.models import *
 from leaflet.admin import LeafletGeoAdmin
-from .models import DatosGenerales
-from .models import Parametros
-from .models import Lugar
+
+#from .models import DatosGenerales
+#from .models import Parametros
+#from .models import Lugar
 
 # Register your models here.
 #admin.site.register(DatosGenerales)
@@ -11,14 +12,14 @@ from .models import Lugar
 #admin.site.register(Lugar, LeafletGeoAdmin)
 
 
-class DatosGeneralesAdmin(LeafletGeoAdmin):
-    list_display = ('DatosGenerales', 'location')
+class DatosGeneralesAdmin(admin.ModelAdmin):
+    list_display = ('DatosGenerales', 'nombre')
 
 admin.site.register(DatosGenerales, DatosGeneralesAdmin)
 
 
-class ParametrosAdmin(LeafletGeoAdmin):
-    list_display = ('Parametros', 'location')
+class ParametrosAdmin(admin.ModelAdmin):
+    list_display = ('Parametros', 'categoria')
 
 admin.site.register(Parametros, ParametrosAdmin)
 

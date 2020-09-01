@@ -67,7 +67,7 @@ class Lugar(Model):
     nom=CharField(max_length=100)
     point=models.PointField()
     
-    @property
+    #@property
     def lat_lng(self):
         return list(getattr(self.point, 'coords', []) [::-1])
     
