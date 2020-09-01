@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+GEOS_LIBRARY_PATH ='C:/OSGeo4W64/bin/geos_c.dll'
 
 # Application definition
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'core',
+    'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -88,16 +90,6 @@ DATABASES = {
     }
 }
 
-LEAFLET_CONFIG = {     
-    #'SPATIAL_EXTENT': (5.0, 44.0),     
-    'DEFAULT_CENTER': (-16,-68),     
-    'DEFALUT_ZOOM': 7,     
-    'MAX_ZOOM': 20,     
-    'MIN_ZOOM': 2,     
-    'SCALE': 'both',     
-    'MINIMAP': True,     
-    'ATRIBUTION_PREFIX': 'Inspierd by Cinthia', 
-    }
 
 if os.name == 'nt':     
     import platform     
@@ -158,3 +150,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles'),
 ]
+
+LEAFLET_CONFIG = {     
+    #'SPATIAL_EXTENT': (5.0, 44.0),     
+    'DEFAULT_CENTER': (-16,-68),     
+    'DEFALUT_ZOOM': 7,     
+    'MAX_ZOOM': 20,     
+    'MIN_ZOOM': 2,     
+    'SCALE': 'both',     
+    'MINIMAP': True,     
+    'ATRIBUTION_PREFIX': 'I am a student, my name is Cinthia', 
+    }

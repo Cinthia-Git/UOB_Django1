@@ -52,6 +52,16 @@ class Parametros(Model):
     unidad_medida=CharField(max_length=10)
 
 
+    def __str__(self):
+        return self.categoria
+
+    class Meta:
+        ordering=("nombre",)
+        verbose_name="Parámetro"
+        verbose_name_plural="Parámetros"
+
+
+
 
 class Lugar(Model):
     nom=CharField(max_length=100)
@@ -60,13 +70,18 @@ class Lugar(Model):
     @property
     def lat_lng(self):
         return list(getattr(self.point, 'coords', []) [::-1])
+    
+    class Meta:
+        verbose_name_plural ="Lugares"
+
+
 
 
 
 #class Límites_RMCH(Model):
-    id_parametro= 
-    CLASE_A=FloatField
-    CLASE_B=
-    CLASE_C=
-    CLASE_D=
-    CLASE_E= 
+    #id_parametro= 
+    #CLASE_A=FloatField
+    #CLASE_B=
+    #CLASE_C=
+    #CLASE_D=
+    #CLASE_E= 
