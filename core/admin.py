@@ -13,13 +13,14 @@ from leaflet.admin import LeafletGeoAdmin
 
 
 class DatosGeneralesAdmin(admin.ModelAdmin):
-     list_display = [x.name for x in DatosGenerales_meta.fields if x.name != 'localizacion']
+     list_display = [x.name for x in DatosGenerales._meta.fields if x.name != 'localizacion']
 admin.site.register(DatosGenerales, DatosGeneralesAdmin)
+#('DatosGenerales', 'location')
 
 class ParametrosAdmin(admin.ModelAdmin):
-     list_display = [x.name for x in Parametro_meta.fields if x.name != 'localizacion']
+     list_display = [x.name for x in Parametros._meta.fields if x.name != 'localizacion']
 admin.site.register(Parametros, ParametrosAdmin)
 
 class LugarAdmin(LeafletGeoAdmin):
-    list_display = [x.name for x in Lugar_meta.fields if x.name != 'localizacion']
+    list_display = [x.name for x in Lugar._meta.fields if x.name != 'localizacion']
 admin.site.register(Lugar, LugarAdmin)
