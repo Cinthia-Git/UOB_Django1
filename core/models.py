@@ -1,24 +1,26 @@
 from django.db.models import *
 from django.contrib.gis.db import models
 
-paises=[
-    (0,"bolivia"), (1,"peru")
-]
+#paises=[
+    #(0,"bolivia"), (1,"peru")
+#]
 
-
-monitoreos=[
-    (0,"calidad"), (1,"biomasa")
-]
-
+#monitoreos=[
+    #(0,"calidad"), (1,"biomasa")
+#]
 
 epocas=[
     (0,"seca"), (1,"humeda")
 ]
+
 # Create your models here.
+
+#class Inicio(Model):
+     #pais=IntegerField(choices=paises)
+     #monitoreo=IntegerField(choices=monitoreos)
+
 class DatosGenerales(Model):
     id_datos_generales=IntegerField(primary_key=True)
-    pais=IntegerField(choices=paises)
-    tipo_monitoreo=IntegerField(choices=monitoreos)
     anyo=IntegerField()
     epoca=IntegerField(choices=epocas)
     fecha=DateField()
