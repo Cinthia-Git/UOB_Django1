@@ -21,6 +21,10 @@ class ParametrosAdmin(admin.ModelAdmin):
      list_display = [x.name for x in Parametros._meta.fields if x.name != 'localizacion']
 admin.site.register(Parametros, ParametrosAdmin)
 
-class LugarAdmin(LeafletGeoAdmin):
-    list_display = [x.name for x in Lugar._meta.fields if x.name != 'localizacion']
-admin.site.register(Lugar, LugarAdmin)
+class UbicacionAdmin(LeafletGeoAdmin):
+    list_display = [x.name for x in Ubicacion._meta.fields if x.name != 'localizacion']
+admin.site.register(Ubicacion, UbicacionAdmin)
+
+class LimitesAdmin(admin.ModelAdmin):
+    list_display = [x.name for x in Limites._meta.fields if x.name != 'localizacion']
+admin.site.register(Limites, LimitesAdmin)

@@ -1,13 +1,14 @@
 from django.db.models import *
 from django.contrib.gis.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
-#paises=[
-    #(0,"bolivia"), (1,"peru")
-#]
+paises=[
+    (2,"Bolivia"), (3,"Peru")
+]
 
-#monitoreos=[
-    #(0,"calidad"), (1,"biomasa")
-#]
+monitoreos=[
+    (4,"Calidad de agua"), (5,"Biomasa")
+]
 
 epocas=[
     (0,"seca"), (1,"humeda")
@@ -15,9 +16,20 @@ epocas=[
 
 # Create your models here.
 
-#class Inicio(Model):
-     #pais=IntegerField(choices=paises)
-     #monitoreo=IntegerField(choices=monitoreos)
+
+class Ubicacion(Model):
+    pais=IntegerField(choices=paises)
+    monitoreo=IntegerField(choices=monitoreos)
+    point=models.PointField()
+    
+    #@property
+    def lat_lng(self):
+        return list(getattr(self.point, 'coords', []) [::-1])
+    
+    class Meta:
+        verbose_name="Ubicación"
+        verbose_name_plural="Ubicación"
+
 
 class DatosGenerales(Model):
     id_datos_generales=IntegerField(primary_key=True)
@@ -63,27 +75,19 @@ class Parametros(Model):
         verbose_name_plural="Parámetros"
 
 
+class Limites(Model):
+    simbolo=ForeignKey(Parametros,on_delete=CASCADE)
+    CLASE_A=FloatField(
+        validators = [MinValueValidator(3), MaxValueValidator(6)])
+    #CLASE_B=FloatField
+    #CLASE_C=FloatField
+    #CLASE_D=FloatField
+    #CLASE_E=FloatField
 
-
-class Lugar(Model):
-    nom=CharField(max_length=100)
-    point=models.PointField()
-    
-    #@property
-    def lat_lng(self):
-        return list(getattr(self.point, 'coords', []) [::-1])
-    
+    def __str__(self):
+        return self.simbolo
+        
     class Meta:
-        verbose_name_plural ="Lugares"
+        verbose_name="Límites"
+        verbose_name_plural="Límites"
 
-
-
-
-
-#class Límites_RMCH(Model):
-    #id_parametro= 
-    #CLASE_A=FloatField
-    #CLASE_B=
-    #CLASE_C=
-    #CLASE_D=
-    #CLASE_E= 
