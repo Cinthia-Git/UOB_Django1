@@ -1,4 +1,6 @@
 {% load static %}
+<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -96,10 +98,21 @@
   <head>
     {% leaflet_js %}
     {% leaflet_css %}
-  </head>
+    <script type="text/javascript" src="CalidadBolivia.js"></script>
+  </head> 
+
   <body>
+    <script>
+      function map_init_basic (map, options) {
+      L.marker([-16.05, -69.1]).addTo(map);
+      L.geoJson(CalidadBolivia).addTo(map);
+      }
+    </script>
+     
+     
     <h4>VISUALIZADOR CALIDAD DE AGUA JURISDICCIÓN BOLIVIANA</h4>
-    {% leaflet_map "MAPA" %}
+    {% leaflet_map "Mapa" callback="window.map_init_basic" %}
   </body>
+  
 </html>
 

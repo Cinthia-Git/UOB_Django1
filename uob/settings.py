@@ -15,6 +15,11 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -148,16 +153,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'staticfiles', 'Data'),
 ]
 
+
+
+
+
 LEAFLET_CONFIG = {     
-    #'SPATIAL_EXTENT': (5.0, 44.0),     
-    'DEFAULT_CENTER': (-16,-68),     
-    'DEFALUT_ZOOM': 7,     
-    'MAX_ZOOM': 20,     
-    'MIN_ZOOM': 2,     
-    'SCALE': 'both',     
-    'MINIMAP': True,     
-    'ATRIBUTION_PREFIX': 'I am a student, my name is Cinthia', 
-    }
+      #'SPATIAL_EXTENT': (5.0, 44.0),     
+      'DEFAULT_CENTER': (-16,-68),     
+      'DEFALUT_ZOOM': 7,     
+      'MAX_ZOOM': 20,     
+      'MIN_ZOOM': 2,     
+      'SCALE': 'both',     
+      'MINIMAP': True,     
+      'ATRIBUTION_PREFIX': 'Developed by Cinthia', 
+      }

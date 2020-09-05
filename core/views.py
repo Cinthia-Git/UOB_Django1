@@ -12,6 +12,7 @@ from .models import Limites
 class Inicio(TemplateView):
     template_name = "core/index.html"
 
+
 #class DatosGeneralesList(ListView) :
     #queryset = DatosGenerales.objects.filter(point_isnull-False )
 
