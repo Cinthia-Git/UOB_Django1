@@ -1,14 +1,7 @@
 from django.db.models import *
 from django.contrib.gis.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 
-paises=[
-    (2,"Bolivia"), (3,"Peru")
-]
 
-monitoreos=[
-    (4,"Calidad de agua"), (5,"Biomasa")
-]
 
 epocas=[
     (0,"seca"), (1,"humeda")
@@ -16,19 +9,6 @@ epocas=[
 
 # Create your models here.
 
-
-class Ubicacion(Model):
-    pais=IntegerField(choices=paises)
-    monitoreo=IntegerField(choices=monitoreos)
-    point=models.PointField()
-    
-    #@property
-    def lat_lng(self):
-        return list(getattr(self.point, 'coords', []) [::-1])
-    
-    class Meta:
-        verbose_name="Ubicación"
-        verbose_name_plural="Ubicación"
 
 
 class DatosGenerales(Model):
@@ -59,6 +39,7 @@ class DatosGenerales(Model):
 
 
 class Parametros(Model):
+    #id_parametro=IntegerField(primary_key=True)
     id_datos_generales=ForeignKey(DatosGenerales,on_delete=CASCADE)
     categoria=CharField(max_length=50)
     nombre=CharField(max_length=50)
@@ -75,14 +56,30 @@ class Parametros(Model):
         verbose_name_plural="Parámetros"
 
 
+
+class Visor(Model):
+    point=models.PointField()
+
+
+    #@property
+    def lat_lng(self):
+        return list(getattr(self.point, 'coords', []) [::-1])
+    
+    class Meta:
+        verbose_name="Visor"
+        verbose_name_plural="Visor"
+
+
+
+
 class Limites(Model):
-    simbolo=ForeignKey(Parametros,on_delete=CASCADE)
-    CLASE_A=FloatField(
-        validators = [MinValueValidator(3), MaxValueValidator(6)])
-    #CLASE_B=FloatField
-    #CLASE_C=FloatField
-    #CLASE_D=FloatField
-    #CLASE_E=FloatField
+    #id_limite=IntegerField(primary_key=True)
+    nombre=ForeignKey(Parametros,on_delete=CASCADE)
+    #claseA=FloatField(max_length=2000)
+    #claseB=FloatField(max_length=2000)
+    #claseC=FloatField(max_length=2000)
+    #claseD=FloatField(max_length=2000)
+    #claseE=FloatField(max_length=2000)
 
     def __str__(self):
         return self.simbolo
@@ -90,4 +87,5 @@ class Limites(Model):
     class Meta:
         verbose_name="Límites"
         verbose_name_plural="Límites"
+
 
