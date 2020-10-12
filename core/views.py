@@ -7,7 +7,7 @@ from .models import DatosGenerales
 from .models import Parametros
 from .models import Visor
 from .models import Limites
-
+from .models import CamposParametro
 
 class Inicio(TemplateView):
     template_name = "core/index.html"

@@ -111,16 +111,29 @@
   <body>
     <script type="text/javascript" src="Calidad_B.js"></script>
     <script> 
-    var map = L.map('Calidad_B', 	{center: [-16.05, -69.1],zoom: 11});
+    var map = L.map('Calidad_B', 	{center: [-16.05, -69.1][-16.07, -69.2] [-16.08, -69.25], zoom: 11});
     L.geoJson(Calidad_B).addTo(map);
+    var geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "amenity": "Baseball Stadium",
+        "popupContent": "Punto de monitoreo"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-16.07, -69.06]
+    }
+    };
+    L.geoJSON(Calidad_B).addTo(map);
     </script>
     <script>
       function map_init_basic (map, options) {
-      L.marker([-16.05, -69.1]).addTo(map);}
+      L.marker([-16.05, -69.1], [-16.07, -69.2], [-16.08, -69.25]).addTo(map);}
     </script>
 
 
-    <h6>VISUALIZADOR: Calidad de agua jurisdicción Boliviana </h6>
+    <h5>VISUALIZADOR: Calidad de agua jurisdicción Boliviana </h5>
     {% leaflet_map "Mapa" callback="window.map_init_basic" %}
   </body>
   

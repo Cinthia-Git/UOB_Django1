@@ -74,7 +74,7 @@ class Visor(Model):
 
 class Limites(Model):
     #id_limite=IntegerField(primary_key=True)
-    nombre=ForeignKey(Parametros,on_delete=CASCADE)
+    #nombre=ForeignKey(Parametros,on_delete=CASCADE)
     #claseA=FloatField(max_length=2000)
     #claseB=FloatField(max_length=2000)
     #claseC=FloatField(max_length=2000)
@@ -89,3 +89,56 @@ class Limites(Model):
         verbose_name_plural="Límites"
 
 
+
+class CamposParametro(Model):
+    #id_parametro=IntegerField(primary_key=True)
+    #ide_categoria=ForeignKey(Parametros,on_delete=CASCADE)
+    CE=FloatField(max_length=50)
+    Ods=FloatField(max_length=50)
+    pH=FloatField(max_length=50)
+    SDT=FloatField(max_length=50)
+    SSed=FloatField(max_length=50)
+    SST=FloatField(max_length=50)
+    T=FloatField(max_length=50)
+    Turb=FloatField(max_length=50)
+    OD=FloatField(max_length=50)
+    TDS=FloatField(max_length=50)
+    Al=FloatField(max_length=50)
+    As=FloatField(max_length=50)
+    B=FloatField(max_length=50)
+    Ca=FloatField(max_length=50)
+    Cd=FloatField(max_length=50)
+    Cu=FloatField(max_length=50)
+    CrIII=FloatField(max_length=50)
+    Fe=FloatField(max_length=50)
+    Mn=FloatField(max_length=50)
+    Hg=FloatField(max_length=50)
+    Ni=FloatField(max_length=50)
+    Pb=FloatField(max_length=50)
+    Se=FloatField(max_length=50)
+    Na=FloatField(max_length=50)
+    Zn=FloatField(max_length=50)
+    NH3=FloatField(max_length=50)
+    Cl=FloatField(max_length=50)
+    P=FloatField(max_length=50)
+    PO43=FloatField(max_length=50)
+    N_T=FloatField(max_length=50)
+    SO42=FloatField(max_length=50)
+    S2=FloatField(max_length=50)
+    AyG=FloatField(max_length=50)
+    COT=FloatField(max_length=50)
+    C=FloatField(max_length=50)
+    DBOs=FloatField(max_length=50)
+    SAAM=FloatField(max_length=50)
+    Colifecal=FloatField(max_length=50)
+    Parasitos=FloatField(max_length=50)
+
+
+
+
+    def __str__(self):
+        return self.id_nombre
+
+    class Meta:
+        verbose_name="Campos Parámetro"
+        verbose_name_plural="Campos Parámetro"
