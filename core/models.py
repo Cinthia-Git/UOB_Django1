@@ -2,9 +2,16 @@ from django.db.models import *
 from django.contrib.gis.db import models
 
 
+paises=[
+    (0,"Bolivia"), (1,"Perú")
+]
+
+monitoreos=[
+    (0,"Biomasa"), (1,"Calidad de agua")
+]
 
 epocas=[
-    (0,"seca"), (1,"humeda")
+    (0,"estiaje (seca)"), (1,"avenida (humeda)")
 ]
 
 # Create your models here.
@@ -13,8 +20,10 @@ epocas=[
 
 class DatosGenerales(Model):
     id_datos_generales=IntegerField(primary_key=True)
-    anyo=IntegerField()
+    pais=IntegerField(choices=paises)
+    monitoreo=IntegerField(choices=monitoreos)
     epoca=IntegerField(choices=epocas)
+    anyo=IntegerField()
     fecha=DateField()
     hora=TimeField()
     nombre=CharField(max_length=50)
@@ -54,39 +63,6 @@ class Parametros(Model):
         ordering=("nombre",)
         verbose_name="Parámetro"
         verbose_name_plural="Parámetros"
-
-
-
-class Visor(Model):
-    point=models.PointField()
-
-
-    #@property
-    def lat_lng(self):
-        return list(getattr(self.point, 'coords', []) [::-1])
-    
-    class Meta:
-        verbose_name="Visor"
-        verbose_name_plural="Visor"
-
-
-
-
-class Limites(Model):
-    #id_limite=IntegerField(primary_key=True)
-    #nombre=ForeignKey(Parametros,on_delete=CASCADE)
-    #claseA=FloatField(max_length=2000)
-    #claseB=FloatField(max_length=2000)
-    #claseC=FloatField(max_length=2000)
-    #claseD=FloatField(max_length=2000)
-    #claseE=FloatField(max_length=2000)
-
-    def __str__(self):
-        return self.simbolo
-        
-    class Meta:
-        verbose_name="Límites"
-        verbose_name_plural="Límites"
 
 
 
@@ -142,3 +118,37 @@ class CamposParametro(Model):
     class Meta:
         verbose_name="Campos Parámetro"
         verbose_name_plural="Campos Parámetro"
+
+
+
+
+
+#class Limites(Model):
+    #id_limite=IntegerField(primary_key=True)
+    #nombre=ForeignKey(Parametros,on_delete=CASCADE)
+    #claseA=FloatField(max_length=50)
+    #claseB=FloatField(max_length=50)
+    #claseC=FloatField(max_length=50)
+    #claseD=FloatField(max_length=50)
+    #clase_critica=FloatField(max_length=50)
+
+    #def __str__(self):
+     #   return self.nombre
+        
+    #class Meta:
+     #   verbose_name="Límites"
+      #  verbose_name_plural="Límites"
+
+
+class Visor(Model):
+    point=models.PointField()
+
+
+    #@property
+    def lat_lng(self):
+        return list(getattr(self.point, 'coords', []) [::-1])
+    
+    class Meta:
+        verbose_name="Visor"
+        verbose_name_plural="Visor"
+

@@ -5,9 +5,11 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView
 from .models import DatosGenerales
 from .models import Parametros
-from .models import Visor
-from .models import Limites
 from .models import CamposParametro
+#from .models import Limites
+from .models import Visor
+
+
 
 class Inicio(TemplateView):
     template_name = "core/index.html"

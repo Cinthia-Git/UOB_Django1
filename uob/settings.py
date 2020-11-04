@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'core',
     'leaflet',
+    'solo',
 ]
 
 MIDDLEWARE = [
@@ -168,5 +169,5 @@ LEAFLET_CONFIG = {
       'MIN_ZOOM': 2,     
       'SCALE': 'both',     
       'MINIMAP': True,     
-      'ATRIBUTION_PREFIX': 'Developed by Cinthia', 
+      'ATRIBUTION_PREFIX': 'Developed by the UOB', 
       }
